@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; El promedio – Modelar el mundo</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/capitulo1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-631496449bf32ff9b0bb69a6bfd9195d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/capitulo2.html">Simple vs complejo</a></li><li class="breadcrumb-item"><a href="../chapters/capitulo2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">El promedio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Modelar el mundo</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/capitulo0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/capitulo1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simulaciones</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Simple vs complejo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/capitulo2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">El promedio</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#cuando-el-promedio-es-el-héroe" id="toc-cuando-el-promedio-es-el-héroe" class="nav-link active" data-scroll-target="#cuando-el-promedio-es-el-héroe"><span class="header-section-number">3.1</span> Cuando el promedio es el héroe</a></li>
+  <li><a href="#cuando-el-promedio-es-el-villano" id="toc-cuando-el-promedio-es-el-villano" class="nav-link" data-scroll-target="#cuando-el-promedio-es-el-villano"><span class="header-section-number">3.2</span> Cuando el promedio es el villano</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/capitulo2.html">Simple vs complejo</a></li><li class="breadcrumb-item"><a href="../chapters/capitulo2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">El promedio</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">El promedio</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><em>Ingenuidad y manipulación</em></p>
+</blockquote>
+<p>El promedio es la herramienta estadística más conocida, y también nos resulta la más natural, pues la usamos desde que entramos a la escuela. Nuestra experiencia con el promedio nos indica que puede usarse como resumen de un conjunto de datos, ya que si tienes un estudiante con un promedio de 9 sobre 10, concluyes que se trata de uno bueno sin necesidad de ver todo su historial.</p>
+<p>Debido a esto, podemos llegar a malinterpretar lo que significa un promedio cuando se trabaja con datos que no muestran la estabilidad de las calificaciones escolares. Veamos un ejemplo de esta estabilidad. Si eras un chico que obtenía 8 en todas sus tareas y exámenes, un único 0 no causaba un colapso de tu nota final, como un 10 no te convertía en el mejor de la clase. Podemos verlo en este ejemplo:</p>
+<p><span class="math display">\[\frac{8.5+8.25+7.75+9+7.5+8+8+8.5+7.75+\mathbf{0}}{10} = \mathbf{7.33}\,,\]</span> <span class="math display">\[\frac{8.5+8.25+7.75+9+7.5+8+8+8.5+7.75+\mathbf{10}}{10} = \mathbf{8.33}\,.\]</span></p>
+<p>Ir de un extremo al otro equivale a un punto de diferencia, lo cual puede parecer mucho cuando eres un niño que intenta impresionar a sus padres, pero en términos prácticos, se trata de ruido.</p>
+<p>Las cosas cambian cuando hablamos de dinero, un tema que le interesa a todo el mundo. Ya que la distribución del dinero muestra enormes desigualdades, usar esta métrica es una estrategia de manipulación común para venderte sueños imposibles.</p>
+<p>Un ejemplo clásico es este anuncio que me aparece en cada rincón de internet: obtén un sobresueldo de <span class="math inline">\(x\)</span> dinero haciendo trading, o comprando esto, o vendiendo aquello. Cuando vas a los detalles te advierten que esos valores son el promedio obtenido de un grupo de pobres diablos que intentaron el mismo método inútil que quieren venderte. Veamos por qué se trata de una mentira.</p>
+<p>Puedes tener a noventa y nueve personas con una ganancia anual nula y a una única persona con un aporte gigante de un millón:</p>
+<p><span class="math display">\[\frac{99 \times 0 + 1\,000\,000}{100} = 10\,000\,.\]</span></p>
+<p>Luego, podrías escuchar que el método te consigue una ganancia anual promedio de unos fabulosos <span class="math inline">\(\$10\,000\)</span>. Y concluyes (erróneamente) que lo mejor que puedes hacer es adquirir el curso que te están vendiendo.</p>
+<p>Por eso, mi intención con este capítulo es abrirte los ojos ante la amenaza de darle demasiada importancia a un promedio si no conoces la naturaleza de la variable que estás analizando. No es lo mismo hablar de un promedio limitado por el mundo físico, que de uno que trabaja sobre sistemas de información.</p>
+<section id="cuando-el-promedio-es-el-héroe" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="cuando-el-promedio-es-el-héroe"><span class="header-section-number">3.1</span> Cuando el promedio es el héroe</h2>
+<p>Pongamos un ejemplo donde el promedio tiene sentido: queremos estimar el consumo medio diario de gramos de carne en un local de hamburguesas del barrio. Esto nos permite planificar gastos, y en este escenario tiene todo el sentido del mundo usar un promedio como estimador porque nunca vas a tener cien clientes que consuman una hamburguesa junto a uno que consuma mil.</p>
+<p>Es posible que la estimación tenga pequeñas explosiones inesperadas (como tener el restaurante lleno), pero sigue estando limitado por un sistema físico (el tamaño del restaurante). No puedes pasar de cero a un millón en un minuto.</p>
+<p>En este sentido, lo único que hace falta es la desviación estándar. Ninguna media tiene sentido sin su varianza. Bajo una campana de Gauss perfecta, tienes alrededor de un 68% de la información dentro de una desviación estándar hacia arriba y hacia abajo.</p>
+<p>Para entenderlo mejor, hagamos una simulación. La cantidad de gramos que contiene cada hamburguesa está estandarizada: una hamburguesa normal tiene 125&nbsp;g, una premium tiene 200&nbsp;g, y una hamburguesa doble tiene 250&nbsp;g.</p>
+<p>Luego asignamos probabilidades razonables para cada hamburguesa: la probabilidad de que un cliente compre una hamburgusea normal es <span class="math inline">\(p_{\text{hnormal}} = 0.5\)</span>, la de que compre una premium es <span class="math inline">\(p_{\text{hpremium}} = 0.3\)</span>, y para llegar a 1, la de una hamburguesa doble tiene que ser <span class="math inline">\(p_{\text{hdoble}} = 0.2\)</span>.</p>
+<p>Esto signficia que cuando un cliente se para frente al cajero, tiene una probabilidad <span class="math inline">\(p_i\)</span> de ordenar una de esas hamburguesas, donde <span class="math inline">\(i \in \{\text{hnormal}, \text{hpremium}, \text{hdoble}\}\)</span>. Lo que se traduce en que la probabilidad de comprar una hamburguesa disminuye al incrementar el precio, algo que tiene todo el sentido del mundo.</p>
+<p>Con estas probabilidades, utilizamos una distribución normal <span class="math inline">\(\mathcal{N}(20, 5^2)\)</span> para simular la entrada de clientes durante las 5 horas que el local está en funcionamiento. Esta distribución tiene una media de 20 con una desviación estándar de 5, y el local tiene una capacidad máxima de 30 clientes por hora. Esto significa que la mayor parte del tiempo, el local va a tener entre 15 y 25 clientes cada hora, pero si llega a tener más, nunca van a ser más que 30 (límites físicos).</p>
+<p>Puedes entender esto gráficamente en la figura <a href="#fig-consumo-horas" class="quarto-xref"><span>3.1</span></a>. La figura representa un único día de trabajo. La cantidad de clientes está relacionada con el consumo de carne, como es de esperarse, pero como la elección de los clientes también implica aleatoriedad, a veces puede haber menos clientes, pero más consumo de carne. En cualquier caso, podemos ver que el día inició con local lleno, tenemos 30 clientes, que es el máximo que puede haber cada hora. Luego, la cantidad de clientes baja, pero vemos que este día nunca llega a 10, lo cual resulta muy poco probable.</p>
+<div id="fig-consumo-horas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-consumo-horas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_consumo_por_hora.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-consumo-horas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Simulación de un día de trabajo (5 horas).
+</figcaption>
+</figure>
+</div>
+<p>Ahora podemos simular un mes y recopilar datos. Primero, tenemos un consumo diario individual: <span class="math display">\[C_d = \sum_{i=1}^{N} X_i\,,\]</span> donde <span class="math inline">\(C_d\)</span> es el consumo total de gramos de carne de un día, <span class="math inline">\(N\)</span> representa el número total de hamburguesas vendidas ese día, y <span class="math inline">\(X_i\)</span> representa los gramos que contiene cada hamburguesa vendida (que puede ser normal, premium o doble según su probabilidad). Así, obtenemos valores de 30 días para calcular un promedio de consumo diario con su desviación estándar: <span class="math display">\[\bar{C} = \frac{1}{30} \sum_{d=1}^{30} C_d\,,\]</span> <span class="math display">\[s = \sqrt{\frac{1}{30} \sum_{d=1}^{30} (C_d - \bar{C})^2}\,.\]</span></p>
+<p>Es decir, durante cinco iteraciones (cinco horas de funcionamiento), generamos clientes de forma aleatoria que van a elegir una hamburguesa según su probabilidad <span class="math inline">\(p_i\)</span>, luego sumamos los gramos de carne que contiene cada hambruguesa elegida a un total de consumo diario <span class="math inline">\(C_d\)</span>, y repetimos este experimento 30 veces para obtener los valores de un mes. Finalmente, calculamos el promedio diario con su desviación estándar para decidir cuánta carne vamos a comprar.</p>
+<p>El resultado de esta primera simulación es visible en la figura <a href="#fig-c1-consumo-mes" class="quarto-xref"><span>3.2</span></a>, tenemos el total de carne consumida en kilos cada día. Esos valores los dividimos para 30 y obtenemos un promedio de 16.52&nbsp;kg, con una desviación estándar de 1.87&nbsp;kg. Puedes observar que el promedio junto a sus desviaciones estándar para arriba y para abajo consiguen abrazar a la mayoría de los valores obtenidos durante ese mes. Hay unos pocos picos hacia arriba y hacia abajo, pero esas excepciones tampoco se alejan demasiado de lo esperado. Esto es lo bello de trabajar en entornos físicos limitados que siguen las leyes del universo.</p>
+<div id="fig-c1-consumo-mes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c1-consumo-mes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_consumo_mes.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c1-consumo-mes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Simulación de un mes de trabajo.
+</figcaption>
+</figure>
+</div>
+<p>Podemos imaginar estos datos como el monitoreo que hacemos de un local en el mundo real. Vemos cuántos clientes entran y cuántas hamburguesas se preparan durante un mes y obtenemos estos resultados: la media muestral es de 16.52&nbsp;kg con una desviación estándar de 1.87&nbsp;kg. Como la desviación es menor de 2 kg, creo que lo mejor es concentrarse en el promedio obtenido.</p>
+<p>Ahora, debemos tomar una <strong>decisión de negocio</strong>: el resto del año vamos a comprar la carne de forma semanal, y vamos a comprar el valor promedio diario multiplicado por 7. Algo importate a tomar en cuenta es que en este mundo imaginario la carne sólo se vende por kilos enteros y cuesta <span class="math inline">\(\$10\)</span> el kilo.</p>
+<p>Entonces, tenemos que <span class="math inline">\(16.52 \times 7 \approx 115\)</span>, por lo tanto, vamos a comprar 115 kg todas las semanas. Eso equivale a un gasto semanal de <span class="math inline">\(\$1150\)</span>. Finalmente, aplicamos la técnica del foodcost al 20% (los ingredientes representan el 20% del precio final del producto). Aunque sólo se venden kilos enteros, nosotros podemos estimar el valor de los gramos para nuestras hamburguesas. Luego tomamos ese valor y lo multiplicamos por 5. Esto nos da como resultado que las hamburguesas van a costar:</p>
+<p><span class="math display">\[\begin{align*}
+    1\text{ kg} &amp;= 1000\text{ g}\,, \\
+    1\text{ kg} &amp;= 10\,\$\,, \\
+    1000\text{ g} &amp;= 10\,\$\,, \\
+    \text{precio\_hnormal} &amp;= \frac{125\text{ g}}{1000\text{ g}} \times 10\,\$ \times 5 = \mathbf{6.25}\,\$\,, \\
+    \text{precio\_hpremium} &amp;= \frac{200\text{ g}}{1000\text{ g}} \times 10\,\$ \times 5 = \mathbf{10.00}\,\$\,, \\
+    \text{precio\_hdoble} &amp;= 6.25\,\$ \times 2 = \mathbf{12.50}\,\$\,.
+\end{align*}\]</span></p>
+<p>Con estos precios, y estableciendo que el comportamiento de los clientes se va a mantener estable el resto del año, veamos qué tal le va a esta estrategia comercial. Vamos a analizar algunos puntos fundamentales para decidir si la estrategia funciona. ¿Estamos generando ganancias? Sin ganancias netas, nada tiene sentido. ¿Nos está sobrando carne? Porque si nos sobra mucha carne cada semana estamos comprando de más y desperdiciando recursos. Y finalmente, si no nos sobra, ¿se nos acaba rápido y nos obliga a cerrar el negocio? Tampoco resulta práctico comprar muy poco y fallarle a los clientes.</p>
+<div id="fig-c2-ganancia-neta" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c2-ganancia-neta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-ganancia-neta" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ganancia-linea-tiempo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ganancia-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_ganancia_evolucion.png" class="img-fluid figure-img" data-ref-parent="fig-c2-ganancia-neta">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ganancia-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Línea de tiempo de ganancias.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-ganancia-neta" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ganancia-histograma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ganancia-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_ganancia_distribucion.png" class="img-fluid figure-img" data-ref-parent="fig-c2-ganancia-neta">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ganancia-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Distribución de ganancias.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c2-ganancia-neta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Ganancias netas durante un año de trabajo.
+</figcaption>
+</figure>
+</div>
+<p>La figura <a href="#fig-c2-ganancia-neta" class="quarto-xref"><span>3.3</span></a> muestra las ganancias netas a lo largo del año y lo que tenemos es una ganancia constante que siempre supera los 4 mil dólares semanales.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Esto significa que usar el promedio como estimador por lo menos sí nos resulta rentable. No nos hizo falta analizar series de tiempo ni aplicar estadística avanzada, un promedio centrado en factores físicos nos resultó confiable. También puedes ver que las ganancias ya no se comportan como una distribución normal. Tenemos un bloque altamente concentrado en la parte alta de las ganancias. Es decir, la mayor parte de las semanas la ganancia es superior al promedio de <span class="math inline">\(\$4,523\)</span>, pero hay semanas donde la ganancia se cae. Veremos cómo nos afectan distribuciones asimétricas con valores extremos en más profundidad en el próximo escenario.</p>
+<p>Ahora hay que analizar el consumo de carne. ¿Estamos comprando demasiado y podemos ahorrar unos dólares? La figura <a href="#fig-c2-sobras" class="quarto-xref"><span>3.4</span></a> nos muestra que la carne sobrante puede alcanzar algunos picos de 8 kilogramos, pero la mayor parte del tiempo, terminamos la semana sin nada. Esos pocos picos de sobras se pueden convertir en el almuerzo familiar o en una donación para los últimos clientes, la verdad es que no representan un problema considerando las ganancias.</p>
+<div id="fig-c2-sobras" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c2-sobras-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-sobras" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ganancia-linea-tiempo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ganancia-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_sobrante_evolucion.png" class="img-fluid figure-img" data-ref-parent="fig-c2-sobras">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ganancia-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Línea de tiempo de la carne que sobra.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-sobras" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ganancia-histograma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ganancia-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_sobrante_distribucion.png" class="img-fluid figure-img" data-ref-parent="fig-c2-sobras">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ganancia-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Distribución de las sobras.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c2-sobras-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Cantidad de carne que sobra después de terminar la semana laboral.
+</figcaption>
+</figure>
+</div>
+<p>Finalmente, la carne se nos acaba la mayor parte del tiempo, ¿pero tenemos suficiente para satisfacer a nuestros clientes todos los días? Primero hice un análisis de los datos generados para ver qué día de la semana se acababa la carne, todos los resultados dieron como respuesta el domingo. Así que podemos confiar en que la cantidad de carne que compramos es suficiente para cumplir con nuestra semana laboral. Si el domingo cerramos temprano por falta de ingredientes no podemos culparnos, el domingo es un día de relajación. La figura <a href="#fig-c2-quiebre" class="quarto-xref"><span>3.5</span></a> nos muestra a qué hora suele terminarse la carne, podemos observar que sólo hubo un domingo en el que tuvimos que cerrar el local después de la primera hora. La mayor parte del tiempo la carne se termina en la hora 4 y 5, sobre todo en la 5. Es decir, las semanas que no nos sobra carne, podemos atender el local los domingos sin problema, si cerramos unos minutos antes, no pasa nada.</p>
+<div id="fig-c2-quiebre" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c2-quiebre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_quiebres_por_hora_barras.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c2-quiebre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Hora a la que se termina la carne los domingos.
+</figcaption>
+</figure>
+</div>
+<p>Con esto cerrramos nuestro primer escenario, ideal para el promedio. Ya que estamos tratando con variables limitadas por el mundo físico: carne que puede consumir un cliente y cantidad de clientes dentro del local, el promedio encuentra esa estabilidad que necesita para brillar. Ni siquiera tomamos en consideración las desviaciones estándar, usamos el modelo más simple posible. Y tal vez creas que se pueden mejorar las predicciones con un modelo más complejo, volveremos a esta cuestión más adelante, pero déjame adelantarte que no se puede. Por ahora, después de haber visto el promedio brillar, es momento de ver su caída.</p>
+</section>
+<section id="cuando-el-promedio-es-el-villano" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="cuando-el-promedio-es-el-villano"><span class="header-section-number">3.2</span> Cuando el promedio es el villano</h2>
+<p>En nuestro siguiente escenario vamos a abandonar la seguridad del mundo físico y navegaremos los temibles y turbulentos mares de la información. Vamos a seguir con nuestro local de hamburguesas, para no romper la magia que creamos hace poco, y lo único que vamos a cambiar es el sistema para hacer los pedidos.</p>
+<p>Queremos que nuestras hamburguesas nos den la libertad financiera, así que nos expandimos al mundo online para poder entregar pedidos hechos en aplicaciones de comida a domicilio. Igual que antes, queremos estimar cuánta carne debemos comprar cada semana. Igual que antes, hacemos un estudio preliminar del promedio de pedidos que se realizan en estas aplicaciones. La gran derrota es que no analizamos la distribución de esos pedidos.</p>
+<p>El escenario está construido de esta manera. Las grandes cadenas de hamburguesas como McDonald’s o Burguer King se llevan el 80% de los pedidos, mientras que los locales de barrio como el nuestro sólo se reparten el 20%. Esto es lo que se conoce como ley del 80/20. La competencia de barrio la dejé en 27 locales, parece un número razonable.</p>
+<p>Luego, la cantidad de usuarios que hacen pedidos de hamburguesas por hora la modelé con una distribución normal <span class="math inline">\(\mathcal{N}(150, 20^2)\)</span>, en general podemos esperar que haya entre 130 y 170 personas pidiendo hamburguesas cada hora. Sin embargo, la mayoría de esos usuarios (el 80%) va a realizar un pedido en una gran cadena. Esto significa que nosotros deberíamos pensar en un promedio de <span class="math inline">\(150 \times 0.2 = 30\)</span> (¡repartidos entre 27 locales de barrio!), como un estimador sencillo, pero vamos a irnos por el lado ingenuo para demostrar que el promedio nos puede arruinar.</p>
+<p>Dejemos correr la simulación y adoptemos el punto de vista del dueño de local ingenuo que mira una página de estadísticas de sitios web. Igual que en el escenario anterior, lo que queremos es un promedio diario para multiplicar por 7 y comprar la carne para la semana. Vemos una página de estadísticas web y nos enteramos de que se realizaron un promedio de 743 pedidos por día en el último mes. Con esa información lo que hacemos es dividir este número de pedidos para la cantidad de locales de hamburguesa que en hay la ciudad (incluyendo las grandes franquicias), y encontramos que debemos esperar unas 24 hamburguesas diarias (<span class="math inline">\(743/30 = 24.77\)</span>).</p>
+<p>Si esperamos 24 hamburguesas diarias, vamos a tener que comprar carne para llegar a 168 (<span class="math inline">\(24 \times 7 = 168\)</span>). Digamos que en la aplicación sólo vamos a poner la hamburguesa normal, nada de premium ni doble, tenemos control sobre eso, y no queremos complicarnos la vida. Si nuestra hamburguesa normal tiene 125&nbsp;g, entonces vamos a comprar 21&nbsp;kg de carne cada semana (<span class="math inline">\(125 \times 168 = 21\,000\)</span>). Ahora que hemos tomado nuestra decisión, veamos cómo nos va.</p>
+<div id="fig-c2-expectativa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c2-expectativa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_expectativa_vs_realidad_pedidos.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c2-expectativa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Diferencia entre nuestra expectativa y la realidad.
+</figcaption>
+</figure>
+</div>
+<p>Nosotros esperábamos conseguir alrededor de 168 pedidos semanales, sin embargo, durante dos meses hemos visto cómo la realidad nos golpeaba semana a semana. Por ese motivo, detenemos el experimento y hacemos cuentas de los daños. La figura <a href="#fig-c2-expectativa" class="quarto-xref"><span>3.6</span></a> nos muestra la diferencia entre nuestro estimador y los pedidos que conseguíamos en la aplicación. Nunca llegamos ni a la mitad de lo que habíamos estimado, lo cual, ya podemos deducir, se traduce en un desperdicio de comida y de dinero.</p>
+<div id="fig-c2-tragedia" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-c2-tragedia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-tragedia" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tragedia-dinero" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tragedia-dinero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_tragedia_linea_tiempo.png" class="img-fluid figure-img" data-ref-parent="fig-c2-tragedia">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tragedia-dinero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Ganancias netas semanales.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-c2-tragedia" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tragedia-carne" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tragedia-carne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_tragedia_linea_tiempo_sobrante.png" class="img-fluid figure-img" data-ref-parent="fig-c2-tragedia">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tragedia-carne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Kilos de carne sobrantes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-c2-tragedia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Resultados de nuestro estimador (promedio) ingenuo.
+</figcaption>
+</figure>
+</div>
+<p>En la figura <a href="#fig-c2-tragedia" class="quarto-xref"><span>3.7</span></a> podemos observar que nuestro estimador nos perjudicó de lo lindo. Por un lado (figura <a href="#fig-tragedia-dinero" class="quarto-xref"><span>3.7 (a)</span></a>), vemos que nuestras ganancias no son constantes, de hecho, hay semanas en las que tenemos pérdidas considerables. Por el otro (figura <a href="#fig-tragedia-carne" class="quarto-xref"><span>3.7 (b)</span></a>), tenemos más de 15&nbsp;kg sobrantes cada semana. Con eso podemos hacer muchas hamburguesas y lo estamos tirando a la basura.</p>
+<p>Curiosamente, cuando vemos el balance total de estos dos meses, tenemos una ganancia neta de <span class="math inline">\(\$195.00\)</span>. Esto es gracias a que el food cost al 20% es una estrategia que permite mantener un restaurante. Sin embargo, estos <span class="math inline">\(\$195.00\)</span> extra (extra porque ya antendemos a nuestros clientes dentro del local con buenas ganancias) no justifican el desperdicio de comida. Además, existe la posibilidad de que hayamos tenido suerte, si el experimento seguía, íbamos a terminar con pérdidas.</p>
+<p>¿Cómo hubiésemos podido evitar caer en esta trampa? Lo primero hubuiera sido entender la distribución de los datos. A diferencia de lo que pasaba en nuestro local de hamburguesas, los pedidos que se realizan en una aplicación no tienen limitaciones. Las grandes franquicias, debido a su popularidad, concentran la mayor parte de los pedidos, y no hay ningún límite físico o natural que evite que los usuarios soliciten todos sus pedidos a aquellas franquicias que les gustan, ignorando a todos los demás.</p>
+<p>Como analistas, debemos ver cómo se reparten los datos más allá de un promedio diario. De haberlo hecho en este escenario, hubiéramos encontrado que, quitando las grandes franquicias, el resto de locales luchan por el 19.8% de los pedidos (figura <a href="#fig-distribucion-pedidos" class="quarto-xref"><span>3.8</span></a>).</p>
+<div id="fig-distribucion-pedidos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distribucion-pedidos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_comparativa_cadenas_vs_resto_porcentajes.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distribucion-pedidos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: ¿Cómo se reparten los pedidos considerando las grandes franquicias?
+</figcaption>
+</figure>
+</div>
+<p>Con esta información, como mínimo hubiéramos bajado nuestras expectativas. Como máximo, hubiéramos usado el promedio de pedidos repartido entre 28 locales (<span class="math inline">\(27+1=28\)</span> porque también consideraríamos el nuestro). Claro, antes de tomar esta decisión, hay que asegurarse de que no haya desigualdades entre estos 27 locales de barrio. La figura <a href="#fig-distribucion-pedidos-locales" class="quarto-xref"><span>3.9</span></a> nos muestra que, quitando las grandes franquicias, tenemos una distribución bastante uniforme donde algunos tienen un poco más, otros un poco menos, pero se ve cierta estabilidad en la cual podríamos confiar los primeros meses.</p>
+<div id="fig-distribucion-pedidos-locales" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distribucion-pedidos-locales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/c2_pedidos_independientes_barras.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distribucion-pedidos-locales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: ¿Cómo se reparten los pedidos quitando las grandes franquicias?
+</figcaption>
+</figure>
+</div>
+<p>Así nos despedimos de este gran capítulo. Nuestro primer capítulo usando simulaciones para entender las fortalezas y debilidades de un modelo estimador. De esta manera, espero dejar clara mi metodología, y que en los próximos capítulos podamos adentrarnos en los análisis de modelos más complejos, teniendo completamente claro en qué consiste una simulación.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Esto puede parecer mucho, pero antes de lanzar tu hamburguesería considera que tener un par de empleados, la renta del local, y otros improvistos que incluyen impuestos, seguros y gastos sorpresa; reduce tu ganancia personal a unos <span class="math inline">\(\$800\)</span> si tienes suerte.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/capitulo1.html" class="pagination-link" aria-label="Simulaciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simulaciones</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
