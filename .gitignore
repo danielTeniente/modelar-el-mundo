@@ -1,0 +1,31 @@
+# Quarto (salidas de compilación, previsualizaciones y caché)
+/.quarto/
+/_site/
+/_book/
+*_files/
+*_cache/
+
+# Entornos y temporales de Python / Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Residuos de compilación de LaTeX 
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

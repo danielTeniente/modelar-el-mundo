@@ -1,0 +1,35 @@
+# Prefacio {.unnumbered}
+
+Esta es la versión web de mi libro: Modelar el mundo.
+Se trata de un libro técnico donde se utilizan simulaciones hechas en python
+para explorar el funcionamiento de modelos de machine learning
+considerando la aleatoriedad.
+
+## Hoja de ruta
+
+| Capítulo | Título | Estado |
+| :--- | :--- | :--- |
+| **Capítulo 1** | Introducción | **Publicado** |
+| **Capítulo 2** | Simulaciones | **Publicado** |
+| **Capítulo 3** | El promedio | **Publicado** |
+| **Capítulo 4** | Relaciones lineales | *En redacción (Octubre 2026)* |
+| **Capítulo 5** | Relaciones no lineales | *Simulación terminada* |
+| **Capítulo 6** | Encontrar la simpleza | *Diseño conceptual* |
+| **Capítulo 7** | Complejidad justificada | *Diseño conceptual* |
+| **Por definir** | Irreducibilidad computacional | *Simulación terminada* |
+
+## Apoyar este proyecto
+
+Si quieres apoyar este proyecto, puedes comprar la versión PDF del libro en Payhip. 
+[Descargar PDF en Payhip](https://payhip.com/b/7YM0I){.btn .btn-outline-primary role="button"}
+
+
+## Disclaimer sobre el uso de inteligencia artificial
+
+Este libro fue escrito por un humano (yo) al 100%.
+Los conceptos que se exploran son el resultado de mi razonamiento
+y curiosidad.
+El uso de inteligencia artificial se limita a la generación 
+del código para las simulaciones.
+Específicamente, utilicé Gemini flash con pensamiento extendido.
+

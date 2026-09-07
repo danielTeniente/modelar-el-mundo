@@ -1,0 +1,54 @@
+# Introducción
+> *Pavos esperando ser comidos*
+
+Esta analogía la extraigo del maestro Nassim Taleb. El pavo tiene la
+teoría de que los humanos lo aman porque lo alimentan todos los días. El
+pavo científico se presenta ante el comité de pavos pensadores y muestra
+abundante evidencia que respalda su teoría de que la humanida está hecha
+para servir a los pavos: los humanos les dan alimento, casa y
+protección; por ello, el pavo científico consigue reconocimiento. Guía a
+la sociedad de pavos en base a sus predicciones y alienta a su pueblo
+con grandes sueños para el futuro. Entonces, llega el día de acción de
+gracias y todos los pavos pierden la cabeza.
+
+El pavo no puede entender el día de gracias, está fuera de su alcance.
+De igual manera, resolver el problema de la inducción está fuera del
+alcance de la humanidad. No importa cuánta evidencia acumulemos en favor
+de una teoría, nuestra ignorancia de la totalidad nos puede colocar en
+una posición peligrosa si depositamos demasiada confianza en nuestras
+predicciones.
+
+El mundo actual maneja modelos complejos que están lejos de ser
+entendidos. Creemos que esa complejidad nos ayuda a entender mejor el
+mundo. Falso. Si no somos capaces de entender cómo funcionan los
+modelos, mucho menos podemos entender el mundo que están modelando.
+
+En mis primeros años de universidad veía el milagro de las redes
+neuronales y pensaba que las máquinas serían capaces de resolver la
+ecuación del universo. Sin embargo, mi apetito intelectual de matemática
+y filosofía me llevó a la conclusión de que eso es imposible.
+
+Ya que hoy vemos anuncios sobre inteligencia artificial general y
+tenemos tanto dinero apostado en favor de esta tecnología (tenemos como
+humanidad aunque se trate de una minoría de millonarios locos), la
+imagen que yo tenía en mi época universitaria se está volviendo un meme
+del público general. Parece que estos modelos complejos serán capaces de
+resolver la ecuación del universo.
+
+Mis apuestas están en contra. Esto se debe a que un estudio serio de lo
+que somos capaces de explicar demuestra que realmente conocemos muy
+poco. Y no importa cuánta información tengamos, eso no mejora nuestro
+entendimiento. A veces lo empeora.
+
+Tal vez, una máquina que usa el lenguaje, como los actuales LLMs, sea
+capaz de reducir la complejidad en algunos sectores importantes, pero
+hay áreas que son indomables. El objetivo de este libro es explorar esas
+áreas y entender cuáles son las consecuencias de una exploración
+ingenua.
+
+Ya que los datos son tan importantes en el mundo actual, y se acumulan
+de manera compulsiva, más vale alertar sobre el peligro de convertirse
+en un pavo. Creer que se sabe algo provoca la toma de riesgos agresivos
+innecesarios. Cuando uno se sabe ignorante evita envalentonarse
+demasiado. Si creemos que entendemos lo inentendible, perderemos la
+cabeza el día de acción de gracias.

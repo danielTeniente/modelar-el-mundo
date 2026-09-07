@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "Modelar el mundo"
+  subtitle: "Analizando las consecuencias de lo inesperado, aleatorio y desconocido."
+  author: "Daniel DB"
+  date: today
+  chapters:
+    - index.qmd
+    - chapters/capitulo0.qmd
+    - chapters/capitulo1.qmd
+    - part: "Simple vs complejo"
+      chapters:
+      - chapters/capitulo2.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    toc: true
+    number-sections: true
+  pdf:
+    documentclass: scrreprt
+
+
+
