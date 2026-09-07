@@ -18,6 +18,10 @@ considerando la aleatoriedad.
 | **Capítulo 7** | Complejidad justificada | *Diseño conceptual* |
 | **Por definir** | Irreducibilidad computacional | *Simulación terminada* |
 
+## Link del código de las simulaciones
+
+[Repositorio en GitHub](https://github.com/danielTeniente/modelar-el-mundo/tree/master/notebooks){.btn .btn-outline-primary role="button"}
+
 ## Apoyar este proyecto
 
 Si quieres apoyar este proyecto, puedes comprar la versión PDF del libro en Payhip. 
