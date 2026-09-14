@@ -13,6 +13,7 @@ book:
     - part: "Simple vs complejo"
       chapters:
       - chapters/capitulo2.qmd
+      - chapters/capitulo3.qmd
 
 bibliography: references.bib
 

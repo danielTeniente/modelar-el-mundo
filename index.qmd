@@ -12,8 +12,8 @@ considerando la aleatoriedad.
 | **Capítulo 1** | Introducción | **Publicado** |
 | **Capítulo 2** | Simulaciones | **Publicado** |
 | **Capítulo 3** | El promedio | **Publicado** |
-| **Capítulo 4** | Relaciones lineales | *En redacción (Octubre 2026)* |
-| **Capítulo 5** | Relaciones no lineales | *Simulación terminada* |
+| **Capítulo 4** | Relaciones lineales | **Publicado** |
+| **Capítulo 5** | Relaciones no lineales | *En redacción (finales de Octubre 2026)* |
 | **Capítulo 6** | Encontrar la simpleza | *Diseño conceptual* |
 | **Capítulo 7** | Complejidad justificada | *Diseño conceptual* |
 | **Por definir** | Irreducibilidad computacional | *Simulación terminada* |
